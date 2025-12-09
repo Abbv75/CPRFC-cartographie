@@ -116,7 +116,7 @@ const LocaliteCouche = () => {
 
     return (
         <Stack gap={1} >
-            {data.map((region, index) => (
+            {data?.map((region, index) => (
                 <Accordion
                     key={index}
                     sx={{ fontSize: 12, borderRadius: 5, p: 1 }}
@@ -159,7 +159,7 @@ const LocaliteCouche = () => {
                                 <AccordionDetails>
 
                                     {/* -------------------- ARRONDISSEMENTS -------------------- */}
-                                    {departement.arrondissements.map((arrondissement, index) => (
+                                    {departement?.arrondissements?.map((arrondissement, index) => (
                                         <Accordion
                                             key={index}
                                             sx={{ ml: 1.5, pl: 1.5, borderLeft: `1px solid grey` }}
@@ -180,7 +180,7 @@ const LocaliteCouche = () => {
                                             <AccordionDetails>
 
                                                 {/* -------------------- COMMUNES -------------------- */}
-                                                {arrondissement.communes.map((commune, index) => (
+                                                {arrondissement?.communes?.map((commune, index) => (
                                                     <Accordion
                                                         key={index}
                                                         sx={{ ml: 1.5, pl: 1.5, borderLeft: `1px solid grey` }}
@@ -206,7 +206,7 @@ const LocaliteCouche = () => {
                                                                 sx={{ ml: 1.5, pl: 1.5, borderLeft: `1px solid grey` }}
                                                                 gap={1}
                                                             >
-                                                                {commune.villages.map((village, index) => (
+                                                                {commune?.villages?.map((village, index) => (
                                                                     village.couche
                                                                         ? (
                                                                             <Checkbox
