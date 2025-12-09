@@ -24,7 +24,7 @@ export const AppContext = createContext({} as {
         commune: COMMUNE_T[],
         village: VILLAGE_T[]
     },
-    setlocaliteRegionsSelected: USE_STATE_T, setlocaliteDepartementsSelected: USE_STATE_T, setlocaliteCommunesSelected: USE_STATE_T, setlocaliteVillagesSelected: USE_STATE_T,
+    setlocaliteRegionsSelected: USE_STATE_T, setlocaliteDepartementsSelected: USE_STATE_T, setlocaliteArrondissementsSelected: USE_STATE_T, setlocaliteCommunesSelected: USE_STATE_T, setlocaliteVillagesSelected: USE_STATE_T,
     addImageIsOpen: boolean, setaddImageIsOpen: USE_STATE_T,
     loadIconList: any,
     iconList: string[],

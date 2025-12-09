@@ -11,7 +11,7 @@ const RegionShapFiles = () => {
     return (
         <ShapeFileContainer
             coucheDeDonneesListe={localite.region.map(value => ({
-                filePath: `${REACT_APP_SHAPE_FILE_URL}/localites/${value.code_region}.zip`,
+                filePath: `${REACT_APP_SHAPE_FILE_URL}/${value.couche}`,
                 opacity: 0.002,
                 couleur_c: value.couleur ?? blue[700],
                 name: value.nom_region,

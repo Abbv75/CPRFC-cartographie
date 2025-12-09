@@ -10,6 +10,7 @@ const LocaliteCouche = () => {
         setlegendeSection,
         setlocaliteRegionsSelected,
         setlocaliteDepartementsSelected,
+        setlocaliteArrondissementsSelected,
         setlocaliteCommunesSelected,
         setlocaliteVillagesSelected
     } = useContext(AppContext);
@@ -33,8 +34,12 @@ const LocaliteCouche = () => {
     };
 
     /** Toggle (activer/désactiver) une couche */
-    const toogleElementInCoucheDonnesListe = (element: any, type: 'region' | 'departement' | 'commune' | 'village') => {
+    const toogleElementInCoucheDonnesListe = (
+        element: any,
+        type: 'region' | 'departement' | 'arrondissement' | 'commune' | 'village'
+    ) => {
         switch (type) {
+
             case 'region':
                 setlocaliteRegionsSelected((prev: any) => {
                     const exists = prev.find((item: any) => item.code_region === element.code_region);
@@ -51,6 +56,18 @@ const LocaliteCouche = () => {
                     const exists = prev.find((item: any) => item.code_departement === element.code_departement);
                     if (exists) {
                         return prev.filter((item: any) => item.code_departement !== element.code_departement);
+                    } else {
+                        return [...prev, element];
+                    }
+                });
+                break;
+
+            /** -------------------- AJOUT DE L’ARRONDISSEMENT -------------------- */
+            case 'arrondissement':
+                setlocaliteArrondissementsSelected((prev: any) => {
+                    const exists = prev.find((item: any) => item.code_arrondissement === element.code_arrondissement);
+                    if (exists) {
+                        return prev.filter((item: any) => item.code_arrondissement !== element.code_arrondissement);
                     } else {
                         return [...prev, element];
                     }
@@ -85,6 +102,7 @@ const LocaliteCouche = () => {
     };
 
 
+
     /** Charger au montage */
     useEffect(() => {
         loadData();
@@ -105,11 +123,16 @@ const LocaliteCouche = () => {
                     variant="soft"
                 >
                     <AccordionSummary
-                        children={
-                            <Checkbox
-                                label={region.nom_region.toLowerCase()}
-                                onClick={() => toogleElementInCoucheDonnesListe(region, 'region')}
-                            />
+                        children={region.couche
+                            ? (
+                                <Checkbox
+                                    label={region.nom_region.toLowerCase()}
+                                    onClick={() => toogleElementInCoucheDonnesListe(region, 'region')}
+                                />
+                            )
+                            : (
+                                <Typography children={region.nom_region.toLowerCase()} />
+                            )
                         }
                     />
 
@@ -120,42 +143,87 @@ const LocaliteCouche = () => {
                                 sx={{ ml: 1.5, pl: 1.5, borderLeft: `1px solid grey` }}
                             >
                                 <AccordionSummary
-                                    children={
-                                        <Checkbox
-                                            label={departement.nom_departement.toLowerCase()}
-                                            onClick={() => toogleElementInCoucheDonnesListe(departement, 'departement')}
-                                        />
+                                    children={departement.couche
+                                        ? (
+                                            <Checkbox
+                                                label={departement.nom_departement.toLowerCase()}
+                                                onClick={() => toogleElementInCoucheDonnesListe(departement, 'departement')}
+                                            />
+                                        )
+                                        : (
+                                            <Typography children={departement.nom_departement.toLowerCase()} />
+                                        )
                                     }
                                 />
 
-                                <AccordionDetails >
-                                    {departement.communes.map((commune, index) => (
+                                <AccordionDetails>
+
+                                    {/* -------------------- ARRONDISSEMENTS -------------------- */}
+                                    {departement.arrondissements.map((arrondissement, index) => (
                                         <Accordion
                                             key={index}
                                             sx={{ ml: 1.5, pl: 1.5, borderLeft: `1px solid grey` }}
                                         >
                                             <AccordionSummary
-                                                children={
-                                                    <Checkbox
-                                                        label={commune.nom_commune.toLowerCase()}
-                                                        onClick={() => toogleElementInCoucheDonnesListe(commune, 'commune')}
-                                                    />
+                                                children={arrondissement.couche
+                                                    ? (
+                                                        <Checkbox
+                                                            label={arrondissement.nom_arrondissement.toLowerCase()}
+                                                            onClick={() => toogleElementInCoucheDonnesListe(arrondissement, 'arrondissement')}
+                                                        />
+                                                    ) : (
+                                                        < Typography children={arrondissement.nom_arrondissement.toLowerCase()} />
+                                                    )
                                                 }
                                             />
 
-                                            <AccordionDetails >
-                                                <Stack
-                                                    key={index}
-                                                    sx={{ ml: 1.5, pl: 1.5, borderLeft: `1px solid grey` }}
-                                                    gap={1}
-                                                >
-                                                    {commune.villages.map((village, index) => (
-                                                        <Checkbox
-                                                            label={village.nom_village.toLowerCase()}
-                                                            onClick={() => toogleElementInCoucheDonnesListe(village, 'village')}
+                                            <AccordionDetails>
+
+                                                {/* -------------------- COMMUNES -------------------- */}
+                                                {arrondissement.communes.map((commune, index) => (
+                                                    <Accordion
+                                                        key={index}
+                                                        sx={{ ml: 1.5, pl: 1.5, borderLeft: `1px solid grey` }}
+                                                    >
+                                                        <AccordionSummary
+                                                            children={commune.couche
+                                                                ? (
+                                                                    <Checkbox
+                                                                        label={commune.nom_commune.toLowerCase()}
+                                                                        onClick={() => toogleElementInCoucheDonnesListe(commune, 'commune')}
+                                                                    />
+                                                                )
+                                                                : (
+                                                                    < Typography children={commune.nom_commune.toLowerCase()} />
+                                                                )
+                                                            }
                                                         />
-                                                    ))}
-                                                </Stack>
+
+                                                        <AccordionDetails>
+                                                            {/* -------------------- VILLAGES -------------------- */}
+                                                            <Stack
+                                                                key={index}
+                                                                sx={{ ml: 1.5, pl: 1.5, borderLeft: `1px solid grey` }}
+                                                                gap={1}
+                                                            >
+                                                                {commune.villages.map((village, index) => (
+                                                                    village.couche
+                                                                        ? (
+                                                                            <Checkbox
+                                                                                key={index}
+                                                                                label={village.nom_village.toLowerCase()}
+                                                                                onClick={() => toogleElementInCoucheDonnesListe(village, 'village')}
+                                                                            />
+                                                                        )
+                                                                        : (
+                                                                            < Typography children={village.nom_village.toLowerCase()} />
+                                                                        )
+                                                                ))}
+                                                            </Stack>
+                                                        </AccordionDetails>
+                                                    </Accordion>
+                                                ))}
+
                                             </AccordionDetails>
                                         </Accordion>
                                     ))}
@@ -165,7 +233,6 @@ const LocaliteCouche = () => {
                             </Accordion>
                         ))}
                     </AccordionDetails>
-
 
                 </Accordion>
             ))}

@@ -67,17 +67,29 @@ export interface VILLAGE_T {
     jeune: number,
     femme: number,
     homme: number,
+    couche?: string,
 }
 
 export interface COMMUNE_T {
     nom_commune: string,
     code_commune: string,
+    couche?: string,
+    villages: VILLAGE_T[]
+}
+
+export interface ARRONDISSEMENT_T {
+    nom_departement: string,
+    code_departement: string,
+    couche?: string,
+    communes: Omit<COMMUNE_T, 'villages'>[],
     villages: VILLAGE_T[]
 }
 
 export interface PROVINCE_T {
     nom_departement: string,
     code_departement: string,
+    couche?: string,
+    arrondissements: Omit<ARRONDISSEMENT_T, 'communes'>[],
     communes: Omit<COMMUNE_T, 'villages'>[],
     villages: VILLAGE_T[]
 }
@@ -86,10 +98,11 @@ export interface REGION_T {
     code_region: string,
     nom_region: string,
     departements: PROVINCE_T[],
+    arrondissements: Omit<ARRONDISSEMENT_T, 'communes'>[],
     communes: Omit<COMMUNE_T, 'villages'>[],
     villages: VILLAGE_T[],
-    couleur: string
-
+    couleur: string,
+    couche?: string
 }
 
 export interface COUCHE_DE_DONNEE_T {
@@ -147,31 +160,39 @@ export interface LOCALITE_REGION_T {
     code_region: string;
     nom_region: string;
     abrege_region: string;
-    zone_r: string;
     couleur: string;
-    coord_gps: string;
+    couche?: string;
     departements: {
         id_departement: string | number;
         nom_departement: string;
         code_departement: string;
         abrege_departement: string;
-        communes: {
-            id_commune: string | number;
-            nom_commune: string;
-            code_commune: string;
-            villages: {
-                id_village: string | number;
-                code_village: string;
-                nom_village: string;
-                annee: number;
-                longitude: string;
-                latitude: string;
-                homme: number;
-                femme: number;
-                jeune: number;
-                nb_menage: number;
+        couche?: string;
+        arrondissements: {
+            id_arrondissement: number,
+            code_arrondissement: string,
+            nom_arrondissement: string,
+            couche?: string,
+            communes: {
+                id_commune: string | number;
+                nom_commune: string;
+                code_commune: string;
+                couche?: string;
+                villages: {
+                    id_village: string | number;
+                    code_village: string;
+                    nom_village: string;
+                    annee: number;
+                    longitude: string;
+                    latitude: string;
+                    homme: number;
+                    femme: number;
+                    jeune: number;
+                    nb_menage: number;
+                    couche?: string;
+                }[];
             }[];
-        }[];
+        }[]
     }[];
 };
 

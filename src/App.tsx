@@ -6,7 +6,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { COUCHE_DE_DONNEES_LISTE, FOND_DE_CARTE, ICON } from "./constant"
 import SideBar from "./components/SideBar"
 import { ToastContainer } from "react-toastify"
-import { COMMUNE_T, GET_ALL_FEUILLE, GET_ALL_REQUETE_CARTE_T, PROVINCE_T, RAPORT_CARTO_T, REGION_T, VILLAGE_T } from "types"
+import { ARRONDISSEMENT_T, COMMUNE_T, GET_ALL_FEUILLE, GET_ALL_REQUETE_CARTE_T, PROVINCE_T, RAPORT_CARTO_T, REGION_T, VILLAGE_T } from "types"
 import { AppContext } from "providers"
 import AddIconForm from "features/AddIconForm"
 import getAllIcon from "functions/API/icon/getAllIcon"
@@ -39,6 +39,7 @@ const App = () => {
   // localite element
   const [localiteRegionsSelected, setlocaliteRegionsSelected] = useState([] as REGION_T[]);
   const [localiteDepartementsSelected, setlocaliteDepartementsSelected] = useState([] as PROVINCE_T[]);
+  const [localiteArrondissementsSelected, setlocaliteArrondissementsSelected] = useState<ARRONDISSEMENT_T[]>([])
   const [localiteCommunesSelected, setlocaliteCommunesSelected] = useState([] as COMMUNE_T[]);
   const [localiteVillagesSelected, setlocaliteVillagesSelected] = useState([] as VILLAGE_T[]);
 
@@ -77,9 +78,10 @@ const App = () => {
       region: localiteRegionsSelected,
       departement: localiteDepartementsSelected,
       commune: localiteCommunesSelected,
+      arrondissement: localiteArrondissementsSelected,
       village: localiteVillagesSelected
     }
-  ), [localiteRegionsSelected, localiteDepartementsSelected, localiteCommunesSelected, localiteVillagesSelected]);
+  ), [localiteRegionsSelected, localiteDepartementsSelected, localiteArrondissementsSelected, localiteCommunesSelected, localiteVillagesSelected]);
 
   useEffect(() => {
     loadIconList();
@@ -110,6 +112,7 @@ const App = () => {
         localite,
         setlocaliteRegionsSelected,
         setlocaliteDepartementsSelected,
+        setlocaliteArrondissementsSelected,
         setlocaliteCommunesSelected,
         setlocaliteVillagesSelected,
         addImageIsOpen,
