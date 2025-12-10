@@ -11,7 +11,7 @@ const CommuneShapFiles = () => {
     return (
         <ShapeFileContainer
             coucheDeDonneesListe={localite.commune.map(value => ({
-                filePath: `${REACT_APP_SHAPE_FILE_URL}/${value.code_commune}.zip`,
+                filePath: `${REACT_APP_SHAPE_FILE_URL}${value.couche}`,
                 opacity: 0.002,
                 couleur_c: blue[700],
                 name: value.nom_commune,

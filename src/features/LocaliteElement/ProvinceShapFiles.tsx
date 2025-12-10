@@ -11,7 +11,7 @@ const ProvinceShapFiles = () => {
     return (
         <ShapeFileContainer
             coucheDeDonneesListe={localite.departement.map(value => ({
-                filePath: `${REACT_APP_SHAPE_FILE_URL}/${value.code_departement}.zip`,
+                filePath: `${REACT_APP_SHAPE_FILE_URL}${value.couche}`,
                 opacity: 0.002,
                 couleur_c: blue[700],
                 name: value.nom_departement,

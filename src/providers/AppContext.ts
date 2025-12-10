@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { COMMUNE_T, GET_ALL_FEUILLE, GET_ALL_REQUETE_CARTE_T, PROVINCE_T, RAPORT_CARTO_T, REGION_T, SHAPE_OBJECT_T, USE_STATE_T, VILLAGE_T } from "../types";
+import { ARRONDISSEMENT_T, COMMUNE_T, GET_ALL_FEUILLE, GET_ALL_REQUETE_CARTE_T, PROVINCE_T, RAPORT_CARTO_T, REGION_T, SHAPE_OBJECT_T, USE_STATE_T, VILLAGE_T } from "../types";
 import { FOND_DE_CARTE } from "../constant";
 import { coucheDeDonneesElementConfig_T } from "types/AppT";
 
@@ -22,7 +22,8 @@ export const AppContext = createContext({} as {
         region: REGION_T[],
         departement: PROVINCE_T[],
         commune: COMMUNE_T[],
-        village: VILLAGE_T[]
+        village: VILLAGE_T[],
+        arrondissement : ARRONDISSEMENT_T[]
     },
     setlocaliteRegionsSelected: USE_STATE_T, setlocaliteDepartementsSelected: USE_STATE_T, setlocaliteArrondissementsSelected: USE_STATE_T, setlocaliteCommunesSelected: USE_STATE_T, setlocaliteVillagesSelected: USE_STATE_T,
     addImageIsOpen: boolean, setaddImageIsOpen: USE_STATE_T,
