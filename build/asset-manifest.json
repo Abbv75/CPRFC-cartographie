@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.2ae13fff.css",
-    "main.js": "/static/js/main.59c19b77.js",
+    "main.js": "/static/js/main.d0ee043e.js",
     "static/js/729.73f7dcbd.chunk.js": "/static/js/729.73f7dcbd.chunk.js",
     "static/js/453.db817b40.chunk.js": "/static/js/453.db817b40.chunk.js",
     "static/media/Cameroun.zip": "/static/media/Cameroun.08389eb9c007877dddfc.zip",
@@ -19,12 +19,12 @@
     "static/media/toggle.svg": "/static/media/toggle.4cb77f5b444ed35e8e2e.svg",
     "index.html": "/index.html",
     "main.2ae13fff.css.map": "/static/css/main.2ae13fff.css.map",
-    "main.59c19b77.js.map": "/static/js/main.59c19b77.js.map",
+    "main.d0ee043e.js.map": "/static/js/main.d0ee043e.js.map",
     "729.73f7dcbd.chunk.js.map": "/static/js/729.73f7dcbd.chunk.js.map",
     "453.db817b40.chunk.js.map": "/static/js/453.db817b40.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2ae13fff.css",
-    "static/js/main.59c19b77.js"
+    "static/js/main.d0ee043e.js"
   ]
 }
