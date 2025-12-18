@@ -31,6 +31,10 @@ jobs:
           npm run build
         env:
           CI: false
+          NODE_ENV: production
+          REACT_APP_SHAPE_FILE_URL: ${{ secrets.REACT_APP_SHAPE_FILE_URL }}
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+          REACT_APP_ROOT_URL: ${{ secrets.REACT_APP_ROOT_URL }}
 
       # 5️⃣ Upload build folder via FTP
       - name: Deploy build via FTP
