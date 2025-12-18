@@ -42,4 +42,4 @@ jobs:
           protocol: ftp
           local-dir: build/
           server-dir: /web/
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
