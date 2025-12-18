@@ -21,7 +21,7 @@ const Cartographie = () => {
         zoomLevel
     } = useContext(AppContext);
 
-    const mainCouche = COUCHE_DE_DONNEES_LISTE[7];
+    const mainCouche = COUCHE_DE_DONNEES_LISTE[0];
 
     return (
         <Stack
@@ -70,7 +70,7 @@ const Cartographie = () => {
                     <RapportCartoElement />
 
                     {/* <ShapeFileContainer coucheDeDonneesListe={[{
-                        filePath: COUCHE_DE_DONNEES_LISTE[7].filePath,
+                        filePath: COUCHE_DE_DONNEES_LISTE[0].filePath,
                         opacity: 0.02,
                         // couleur_c: green[800],
                     } as SHAPE_OBJECT_T]} /> */}
