@@ -1,6 +1,6 @@
 import { blue } from '@mui/material/colors';
 import ShapeFileContainer from 'components/Cartographie/ShapeFileContainer';
-import { REACT_APP_SHAPE_FILE_URL } from 'constant';
+import { REACT_APP_API_URL } from 'constant';
 import { AppContext } from 'providers';
 import { useContext } from 'react';
 import { SHAPE_OBJECT_T } from 'types';
@@ -11,7 +11,7 @@ const RegionShapFiles = () => {
     return (
         <ShapeFileContainer
             coucheDeDonneesListe={localite.region.map(value => ({
-                filePath: `${REACT_APP_SHAPE_FILE_URL}/${value.couche}`,
+                filePath: `${REACT_APP_API_URL}/${value.couche}`,
                 opacity: 0.002,
                 couleur_c: value.couleur ?? blue[700],
                 name: value.nom_region,

@@ -11,3 +11,7 @@ export { default as ICON } from './icon';
 export const REACT_APP_SHAPE_FILE_URL = process.env.NODE_ENV == "production"
     ? process.env.REACT_APP_SHAPE_FILE_URL_PROD
     : process.env.REACT_APP_SHAPE_FILE_URL_DEV;
+    
+export const REACT_APP_API_URL = process.env.NODE_ENV == "production"
+    ? process.env.REACT_APP_API_URL_PROD
+    : process.env.REACT_APP_API_URL_DEV;
